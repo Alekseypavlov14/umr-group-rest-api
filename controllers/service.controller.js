@@ -4,9 +4,14 @@ class ServiceController {
   async post(req, res) {
     const serviceTemplate = req.body.service
 
-    const service = new Service(serviceTemplate)
+    let service
 
-    await service.save()
+    try {
+      service = new Service(serviceTemplate)
+      await service.save()
+    } catch (e) {
+      return res.json({ message: 'The name and the label must be unique' })
+    }
 
     res.json({ service })
   }
