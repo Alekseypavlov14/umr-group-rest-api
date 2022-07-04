@@ -1,11 +1,19 @@
 const express = require('express')
+const connect = require('./database/connect')
 require('dotenv').config()
 
 const app = express()
 const PORT = process.env.PORT || 4000
+const URI = process.env.URI
 
-app.get('/', (req, res) => {
-  res.send('Is Working')
-})
+app.use('/feedbacks', require('./routes/feedbacks.routes'))
 
-app.listen(PORT, () => console.log(`Server is working on port ${PORT}`))
+async function start() {
+  await connect(URI)
+
+  app.listen(PORT, () => {
+    console.log(`Server is working on port ${PORT}`)
+  })
+}
+
+start()
