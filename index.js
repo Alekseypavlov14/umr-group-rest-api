@@ -21,6 +21,7 @@ app.get('/', (req, res) => {
 
 app.use('/feedbacks', require('./routes/feedbacks.routes'))
 app.use('/feedback', require('./routes/feedback.routes'))
+app.use('/services', require('./routes/services.routes'))
 app.use('/service', auth, require('./routes/service.routes'))
 
 async function start() {
