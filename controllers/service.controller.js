@@ -15,7 +15,15 @@ class ServiceController {
     const id = req.body.id
     const newService = req.body.service
 
-    let service = await Service.findById(id)
+    let service
+
+    try {
+      service = await Service.findById(id)
+    } catch (e) {
+      return res.json({ message: 'Invalid id' })
+    }
+
+    if (service === null) return res.json({ message: 'Service is not found' })
 
     const keys = Object.keys(newService)
     keys.forEach(key => {
@@ -30,7 +38,17 @@ class ServiceController {
   async delete(req, res) {
     const id = req.body.id
 
-    const service = await Service.findByIdAndDelete(id)
+    let service
+
+    try {
+      service = await Service.findById(id)
+    } catch (e) {
+      return res.json({ message: 'Invalid id' })
+    }
+
+    if (service === null) return res.json({ message: 'Service is not found' })
+
+    await service.delete()
 
     res.json({ service })
   }
