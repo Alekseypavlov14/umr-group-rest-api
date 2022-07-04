@@ -4,7 +4,7 @@ class FeedbackController {
   async post(req, res) {
     const feedbackTemplate = req.body.feedback
 
-    const feedback = new Feedback({ ...feedbackTemplate })
+    const feedback = new Feedback(feedbackTemplate)
 
     await feedback.save()
 

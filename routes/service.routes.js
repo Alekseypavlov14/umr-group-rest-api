@@ -7,4 +7,12 @@ router.post('/', (req, res) => {
   ServiceController.post(req, res)
 })
 
+router.put('/', (req, res) => {
+  ServiceController.put(req, res)
+})
+
+router.delete('/', (req, res) => {
+  ServiceController.delete(req, res)
+})
+
 module.exports = router
