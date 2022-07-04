@@ -11,6 +11,7 @@ app.use(bodyParser())
 
 app.use('/feedbacks', require('./routes/feedbacks.routes'))
 app.use('/feedback', require('./routes/feedback.routes'))
+app.use('/service', require('./routes/service.routes'))
 
 async function start() {
   await connect(URI)
