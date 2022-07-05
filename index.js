@@ -1,7 +1,8 @@
-const bodyParser = require('body-parser')
 const express = require('express')
+const bodyParser = require('body-parser')
 const connect = require('./database/connect')
 const auth = require('./middleware/auth.middleware')
+const cors = require('cors')
 require('dotenv').config()
 
 const app = express()
@@ -10,6 +11,7 @@ const PORT = process.env.PORT || 4000
 const URI = process.env.URI
 
 app.use(bodyParser())
+app.use(cors())
 
 app.get('/', (req, res) => {
   res.json({ message: 'UMR Group API' })
