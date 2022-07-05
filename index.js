@@ -23,6 +23,7 @@ app.use('/feedbacks', require('./routes/feedbacks.routes'))
 app.use('/feedback', require('./routes/feedback.routes'))
 app.use('/services', require('./routes/services.routes'))
 app.use('/service', auth, require('./routes/service.routes'))
+app.use('/auth', require('./routes/auth.routes'))
 
 async function start() {
   await connect(URI)
