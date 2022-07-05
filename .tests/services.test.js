@@ -4,5 +4,5 @@ test('Services [GET]', async () => {
   const response = await fetch('http://localhost:4000/services')
   const data = await response.json()
 
-  expect(Array.isArray(data.services)).toBeTruthy()
+  expect(data).toHaveProperty('services')
 })

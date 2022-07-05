@@ -10,7 +10,7 @@ async function auth(req, res, next) {
     const comparison = await bcrypt.compare(password, candidate.password)
 
     if (comparison) {
-      next()
+      return next()
     }
   }
 
