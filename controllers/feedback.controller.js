@@ -4,9 +4,14 @@ class FeedbackController {
   async post(req, res) {
     const feedbackTemplate = req.body.feedback
 
-    const feedback = new Feedback(feedbackTemplate)
-
-    await feedback.save()
+    let feedback 
+    
+    try {
+      feedback = new Feedback(feedbackTemplate)
+      await feedback.save()
+    } catch (e) {
+      return res.json({ message: 'incorrect data' })
+    }
 
     res.json({ feedback })
   }
