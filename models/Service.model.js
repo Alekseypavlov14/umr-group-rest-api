@@ -1,13 +1,13 @@
 const { Schema, model } = require('mongoose')
 
 const serviceSchema = new Schema({
-  startPrice: { type: Number },
-  label: { type: String, unique: true },
-  name: { type: String, unique: true },
+  startPrice: { type: Number, required: true },
+  label: { type: String, unique: true, required: true },
+  name: { type: String, unique: true, required: true },
   additives: [{ 
-    name: { type: String },
-    label: { type: String },
-    price: { type: Number }
+    name: { type: String, required: true },
+    label: { type: String, required: true },
+    price: { type: Number, required: true }
   }]
 })
 
