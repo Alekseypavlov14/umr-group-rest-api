@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt')
 async function auth(req, res, next) {
   const { login, password } = req.body
 
-  const candidate = await Admin.find({ login })
+  const candidate = await Admin.findOne({ login })
 
   if (candidate) {
     const comparison = await bcrypt.compare(password, candidate.password)
