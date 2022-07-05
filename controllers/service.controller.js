@@ -10,7 +10,7 @@ class ServiceController {
       service = new Service(serviceTemplate)
       await service.save()
     } catch (e) {
-      return res.json({ message: 'The name and the label must be unique' })
+      return res.json({ message: 'incorrect data' })
     }
 
     res.json({ service })
