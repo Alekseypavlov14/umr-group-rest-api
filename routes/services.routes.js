@@ -7,4 +7,8 @@ router.get('/', (req, res) => {
   ServicesController.get(req, res)
 })
 
+router.get('/:id', (req, res) => {
+  ServicesController.getById(req, res)
+})
+
 module.exports = router
