@@ -1,11 +1,20 @@
-function createAuth(login, password) {
-  return function auth(req, res, next) {
-    if (req.body.login !== login || req.body.password !== password) {
-      return res.json({ message: 'The authentication is required' })
-    }
+const Admin = require("../models/Admin.model")
+const bcrypt = require('bcrypt')
 
-    next()
+async function auth(req, res, next) {
+  const { login, password } = req.body
+
+  const candidate = await Admin.find({ login })
+
+  if (candidate) {
+    const comparison = await bcrypt.compare(password, candidate.password)
+
+    if (comparison) {
+      next()
+    }
   }
+
+  return res.json({ message: 'The authentication is required' })
 }
 
-module.exports = createAuth
+module.exports = auth

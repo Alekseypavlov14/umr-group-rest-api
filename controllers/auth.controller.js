@@ -3,8 +3,7 @@ const bcrypt = require('bcrypt')
 
 class AuthController {
   async post(req, res) {
-    const login = req.body.login
-    const password = req.body.password
+    const { login, password } = req.body
 
     const candidate = await Admin.findOne({ login })
 

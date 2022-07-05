@@ -1,17 +1,13 @@
 const bodyParser = require('body-parser')
 const express = require('express')
 const connect = require('./database/connect')
-const createAuth = require('./middleware/auth.middleware')
+const auth = require('./middleware/auth.middleware')
 require('dotenv').config()
 
 const app = express()
 
 const PORT = process.env.PORT || 4000
 const URI = process.env.URI
-const LOGIN = process.env.LOGIN
-const PASSWORD = process.env.PASSWORD
-
-const auth = createAuth(LOGIN, PASSWORD)
 
 app.use(bodyParser())
 
@@ -24,6 +20,10 @@ app.use('/feedback', require('./routes/feedback.routes'))
 app.use('/services', require('./routes/services.routes'))
 app.use('/service', auth, require('./routes/service.routes'))
 app.use('/auth', require('./routes/auth.routes'))
+
+app.all('*', (req, res) => {
+  res.json({ message: 'invalid path' })
+})
 
 async function start() {
   await connect(URI)
